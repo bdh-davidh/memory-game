@@ -1,0 +1,27 @@
+
+
+.icon-wrapper {
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: 9999px;
+  background-color: var(--clr-neutral-300);
+}
+
+
+.material-icons {
+  --size-hack: var(--space-xl);
+
+  display: block;
+  inline-size: var(--size-hack);
+  block-size: var(--size-hack);
+  font-size: var(--size-hack);
+  color: var(--clr-neutral-100);
+}
+
+.paired {
+  background-color: hotpink;
+}
+
+.selected {
+  background-color: rebeccapurple;
+}

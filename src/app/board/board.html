@@ -1,0 +1,8 @@
+<div class="board">
+  @for (item of iconArray; track $index) {
+  <app-icon
+    icon="{{ item.icon }}"
+    index="{{ $index }}"
+  />
+  }
+</div>
