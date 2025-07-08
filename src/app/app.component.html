@@ -1,1 +1,12 @@
+@if (gameState.state === "initial") {
+  <fieldset class="flow">
+    <legend>Select Game Type</legend>
+    <label for="icons">Icons
+      <input type="radio" name="gameType" id="icons" /></label>
+    <label for="numbers">Numbers
+      <input type="radio" name="gameType" id="number"
+    /></label>
+  </fieldset>
+}
+
 <app-board />

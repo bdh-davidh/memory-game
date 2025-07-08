@@ -1,46 +1,48 @@
 import { Injectable, inject } from '@angular/core';
-import { GameStateService } from './game-state.service';
+import { GameState } from './game-state.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameLogic {
-  gameState = inject(GameStateService);
+  gameState = inject(GameState);
 
-  iconStatus(index: number, status: 'initial' | 'selected' | 'paired') {
-    this.gameState.currentGame[Number(index)].iconState = status;
+  tokenStatus(index: number, status: 'initial' | 'selected' | 'paired') {
+    this.gameState.game[Number(index)].tokenState = status;
   }
 
   updateBoardState() {
-    const firstIndex = Number(this.gameState.currentTurn.firstGuess);
-    const secondIndex = Number(this.gameState.currentTurn.secondGuess);
-    const firstIcon = this.gameState.currentGame[Number(firstIndex)];
-    const secondIcon = this.gameState.currentGame[Number(secondIndex)];
+    const firstIndex = Number(this.gameState.turn.firstGuess);
+    const secondIndex = Number(this.gameState.turn.secondGuess);
+    const firstIcon = this.gameState.game[Number(firstIndex)];
+    const secondIcon = this.gameState.game[Number(secondIndex)];
 
     // If it's the first selection, set the selected status
-    if (!this.gameState.currentTurn.secondGuess) {
-      this.iconStatus(firstIndex, 'selected');
+    if (!this.gameState.turn.secondGuess) {
+      this.tokenStatus(firstIndex, 'selected');
     } else {
-      this.iconStatus(secondIndex, 'selected');
+      this.tokenStatus(secondIndex, 'selected');
     }
 
     // If it's the second selection
-    if (this.gameState.currentTurn.secondGuess) {
+    if (this.gameState.turn.secondGuess) {
       // Check for a match
-      if (firstIcon.icon === secondIcon.icon) {
+      if (firstIcon.token === secondIcon.token) {
         // If it's a match set the state
-        this.iconStatus(firstIndex, 'paired');
-        this.iconStatus(secondIndex, 'paired');
+        this.tokenStatus(firstIndex, 'paired');
+        this.tokenStatus(secondIndex, 'paired');
       } else {
-        // No match, so reset the state
+        document.body.setAttribute('inert', '');
+        // No match, so reset the state after a moment memorise the icons
         setTimeout(() => {
-          this.iconStatus(firstIndex, 'initial');
-          this.iconStatus(secondIndex, 'initial');
+          this.tokenStatus(firstIndex, 'initial');
+          this.tokenStatus(secondIndex, 'initial');
+          document.body.removeAttribute('inert');
         }, 1000);
       }
       // Clear the turn after the second turn
-      this.gameState.currentTurn.firstGuess = '';
-      this.gameState.currentTurn.secondGuess = '';
+      this.gameState.turn.firstGuess = '';
+      this.gameState.turn.secondGuess = '';
     }
   }
 }

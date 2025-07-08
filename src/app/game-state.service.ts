@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Icon } from './icon.model';
+import { Token } from './token.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GameStateService {
-  gameOptions = [
-    { theme: ['number', 'icon'] },
-    { players: [1, 2] },
+export class GameState {
+  options = [
+    { type: ['icons', 'numbers'] },
+    { players: [1, 2, 3, 4] },
     { grid: [4, 6] },
   ];
 
-  gameSize: 4 | 6 = 6;
+  size: 4 | 6 = 6;
 
-  currentGame: Icon[] = [];
+  state: 'initial' | 'playing' | 'completed' = 'initial';
 
-  currentTurn = {
+  game: Token[] = [];
+
+  turn = {
     firstGuess: '',
     secondGuess: '',
   };

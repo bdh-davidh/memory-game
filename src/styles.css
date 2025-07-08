@@ -236,7 +236,6 @@ button {
 }
 
 /* Utilities */
-
 .visually-hidden:not(:focus, :active) {
   position: absolute;
   overflow: hidden;

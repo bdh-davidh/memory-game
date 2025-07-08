@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Board } from "./board/board";
+import { GameState } from './game-state.service';
+
 
 
 @Component({
@@ -9,4 +11,6 @@ import { Board } from "./board/board";
   styleUrl: './app.component.css',
   standalone: true,
 })
-export class AppComponent {}
+export class AppComponent {
+  gameState = inject(GameState);
+}

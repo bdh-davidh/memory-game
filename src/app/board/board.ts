@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Icon } from './icon/icon'
-import { GameIcons } from '../game-icons.service';
-import { GameStateService } from '../game-state.service';
+import { GameIcons } from '../game-tokens.service';
+import { GameState } from '../game-state.service';
 
 @Component({
   selector: 'app-board',
@@ -11,11 +11,11 @@ import { GameStateService } from '../game-state.service';
 })
 export class Board implements OnInit {
   gameIcons = inject(GameIcons);
-  gameState = inject(GameStateService);
+  gameState = inject(GameState);
 
   renderBoard() {
-    const gameSize = this.gameState.gameSize * 3;
-    const currentGame = (this.gameState.currentGame = this.gameIcons.iconArray
+    const gameSize = this.gameState.size * 3;
+    const currentGame = (this.gameState.game = this.gameIcons.iconArray
       .slice(0, gameSize)
       .map((item) => [item, item])
       .flat()
@@ -26,10 +26,10 @@ export class Board implements OnInit {
   }
 
   ngOnInit() {
-    this.renderBoard()
+    this.renderBoard();
   }
 
   get iconArray() {
-    return this.gameState.currentGame
+    return this.gameState.game;
   }
 }

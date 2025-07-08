@@ -1,8 +1,8 @@
 import { Component, inject, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { GameStateService } from '../../game-state.service';
+import { GameState } from '../../game-state.service';
 import { GameLogic } from '../../game-logic.service';
-import { GameIcons } from '../../game-icons.service';
+import { GameIcons } from '../../game-tokens.service';
 
 @Component({
   selector: 'app-icon',
@@ -13,20 +13,20 @@ import { GameIcons } from '../../game-icons.service';
 export class Icon {
   icon = input.required<string>();
   index = input.required<string>();
-  private gameState = inject(GameStateService);
+  private gameState = inject(GameState);
   private gameLogic = inject(GameLogic);
   gameIcons = inject(GameIcons);
 
   get iconState() {
-    return this.gameState.currentGame[Number(this.index())].iconState;
+    return this.gameState.game[Number(this.index())].tokenState;
   }
 
   handleClick() {
     // Update the icons selected
-    if (!this.gameState.currentTurn.firstGuess) {
-      this.gameState.currentTurn.firstGuess = this.index();
+    if (!this.gameState.turn.firstGuess) {
+      this.gameState.turn.firstGuess = this.index();
     } else {
-      this.gameState.currentTurn.secondGuess = this.index();
+      this.gameState.turn.secondGuess = this.index();
     }
     this.gameLogic.updateBoardState();
   }

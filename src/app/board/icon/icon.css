@@ -1,12 +1,9 @@
-
-
 .icon-wrapper {
   cursor: pointer;
   padding: var(--space-xs);
   border-radius: 9999px;
   background-color: var(--clr-neutral-300);
 }
-
 
 .material-icons {
   --size-hack: var(--space-xl);
