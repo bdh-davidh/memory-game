@@ -1,27 +1,29 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Icon } from './icon/icon'
-import { GameIcons } from '../game-tokens.service';
+import { Token } from './token/token';
+import { GameTokens } from '../game-tokens.service';
 import { GameState } from '../game-state.service';
 
 @Component({
   selector: 'app-board',
-  imports: [Icon],
+  imports: [Token],
   templateUrl: './board.html',
   styleUrl: './board.css',
 })
 export class Board implements OnInit {
-  gameIcons = inject(GameIcons);
-  gameState = inject(GameState);
+  private gameTokens = inject(GameTokens);
+  private gameState = inject(GameState);
+  arrayToRender = this.gameTokens[this.gameState.type];
+  gridSize = this.gameState.size;
 
   renderBoard() {
-    const gameSize = this.gameState.size * 3;
-    const currentGame = (this.gameState.game = this.gameIcons.iconArray
+    const gameSize = this.gameState.size * (this.gridSize / 2);
+    const currentGame = (this.gameState.game = this.arrayToRender
       .slice(0, gameSize)
       .map((item) => [item, item])
       .flat()
       .map((value) => ({ value, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => ({...value})));
+      .map(({ value }) => ({ ...value })));
     return currentGame;
   }
 

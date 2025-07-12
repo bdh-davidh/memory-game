@@ -2,22 +2,23 @@ import { Component, inject, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { GameState } from '../../game-state.service';
 import { GameLogic } from '../../game-logic.service';
-import { GameIcons } from '../../game-tokens.service';
+
 
 @Component({
-  selector: 'app-icon',
+  selector: 'app-token',
   imports: [MatIcon],
-  templateUrl: './icon.html',
-  styleUrl: './icon.css',
+  templateUrl: './token.html',
+  styleUrl: './token.css',
 })
-export class Icon {
-  icon = input.required<string>();
+export class Token {
+  token = input.required<string>();
   index = input.required<string>();
   private gameState = inject(GameState);
   private gameLogic = inject(GameLogic);
-  gameIcons = inject(GameIcons);
+  tokenType = this.gameState.type;
 
-  get iconState() {
+
+  get tokenState() {
     return this.gameState.game[Number(this.index())].tokenState;
   }
 

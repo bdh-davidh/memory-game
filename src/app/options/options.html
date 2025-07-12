@@ -1,0 +1,47 @@
+<form [formGroup]="optionsForm" (ngSubmit)="startGame()">
+  <fieldset class="flow">
+    <legend class="flow">Select Theme</legend>
+    <label
+      >Icons
+      <input type="radio" value="icons" name="type" formControlName="type" />
+    </label>
+    <label
+      >Numbers
+      <input type="radio" value="numbers" name="type" formControlName="type" />
+    </label>
+  </fieldset>
+
+  <fieldset class="flow">
+    <legend>Number of Players</legend>
+    <label
+      >1
+      <input type="radio" value="1" name="players" formControlName="players" />
+    </label>
+    <label
+      >2
+      <input type="radio" value="2" name="players" formControlName="players" />
+    </label>
+    <label
+      >3
+      <input type="radio" value="3" name="players" formControlName="players" />
+    </label>
+    <label
+      >4
+      <input type="radio" value="4" name="players" formControlName="players" />
+    </label>
+  </fieldset>
+
+  <fieldset class="flow">
+    <legend>Grid Size</legend>
+    <label
+      >4 x 4
+      <input type="radio" value="4" name="grid" formControlName="grid" />
+    </label>
+    <label
+      >6 x 6
+      <input type="radio" value="6" name="grid" formControlName="grid" />
+    </label>
+  </fieldset>
+
+  <button type="submit">Start Game</button>
+</form>

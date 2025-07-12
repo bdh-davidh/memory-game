@@ -1,0 +1,11 @@
+<button
+  type="button"
+  class="{{ tokenState }} icon-wrapper"
+  (click)="handleClick()"
+>
+  @if (tokenType === "numbers") {
+  <span>{{ token() }}</span>
+  } @if (tokenType === "icons") {
+  <mat-icon class="material-icons">{{ token() }}</mat-icon>
+  }
+</button>

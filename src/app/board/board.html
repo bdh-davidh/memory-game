@@ -1,7 +1,7 @@
-<div class="board">
+<div class="board" style="--game-size: {{ gridSize }}">
   @for (item of iconArray; track $index) {
-  <app-icon
-    icon="{{ item.token }}"
+  <app-token
+    token="{{ item.token }}"
     index="{{ $index }}"
   />
   }

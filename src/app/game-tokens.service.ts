@@ -5,10 +5,10 @@ import { Token } from './token.model';
 @Injectable({
   providedIn: 'root',
 })
-export class GameIcons {
+export class GameTokens {
   gameState = inject(GameState);
 
-  iconArray: Token[] = [
+  icons: Token[] = [
     { token: 'flight', tokenState: 'initial' },
     { token: 'train', tokenState: 'initial' },
     { token: 'directions_boat', tokenState: 'initial' },
@@ -29,7 +29,7 @@ export class GameIcons {
     { token: 'spa', tokenState: 'initial' },
   ];
 
-  numberArray: Token[] = [
+  numbers: Token[] = [
     { token: '1', tokenState: 'initial' },
     { token: '2', tokenState: 'initial' },
     { token: '3', tokenState: 'initial' },

@@ -5,6 +5,7 @@
   background-color: var(--clr-neutral-300);
 }
 
+button,
 .material-icons {
   --size-hack: var(--space-xl);
 
@@ -15,10 +16,21 @@
   color: var(--clr-neutral-100);
 }
 
+button:has(span) {
+  display: grid;
+  place-items: center;
+  font-size: var(--space-l);
+  font-weight: bolder;
+}
+
 .paired {
+  pointer-events: none;
+  user-select: none;
   background-color: hotpink;
 }
 
 .selected {
+  pointer-events: none;
+  user-select: none;
   background-color: rebeccapurple;
 }

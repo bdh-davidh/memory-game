@@ -1,0 +1,73 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  padding: var(--space-m);
+  border-radius: var(--space-xs);
+  font-weight: 700;
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-neutral-100);
+}
+
+fieldset {
+  --flow: var(--space-2xs);
+
+  display: flex;
+  gap: var(--space-xs);
+}
+
+legend {
+  font-size: 14px;
+  color: var(--clr-primary-400);
+}
+
+input {
+  position: absolute;
+  gap: var(--space-m);
+  opacity: 0;
+}
+
+label {
+  cursor: pointer;
+  flex: 1;
+  padding-block: var(--space-3xs);
+  padding-inline: var(--space-m);
+  border-radius: var(--space-m);
+  font-size: var(--step-0);
+  text-align: center;
+  background-color: var(--clr-primary-200);
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
+
+  &:hover {
+    background-color: var(--clr-primary-300);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 2px dashed var(--clr-accent-100);
+    outline-offset: 4px;
+  }
+
+  &:has(input:checked) {
+    background-color: var(--clr-primary-400);
+  }
+}
+
+button {
+  cursor: pointer;
+  margin-block-start: var(--space-xs);
+  padding-block: var(--space-2xs);
+  padding-inline: var(--space-m);
+  border-radius: var(--space-m);
+  font-weight: 700;
+  text-align: center;
+  background-color: var(--bg, var(--clr-accent-100));
+  transition:
+    background-color 300ms,
+    color 300ms;
+
+  &:where(:hover, :focus-visible) {
+    background-color: var(--clr-primary-300);
+  }
+}
