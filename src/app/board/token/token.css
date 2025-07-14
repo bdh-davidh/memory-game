@@ -5,15 +5,26 @@
   background-color: var(--clr-neutral-300);
 }
 
+@keyframes button-opacity {
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
 button,
 .material-icons {
   --size-hack: var(--space-xl);
 
+  scale: 0;
   display: block;
   inline-size: var(--size-hack);
   block-size: var(--size-hack);
   font-size: var(--size-hack);
   color: var(--clr-neutral-100);
+  opacity: 0;
+  animation: button-opacity 400ms var(--delay) forwards
+    cubic-bezier(0.68,-0.55,0.27,1.55);
 }
 
 button:has(span) {

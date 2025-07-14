@@ -5,12 +5,11 @@ import { Token } from './token.model';
   providedIn: 'root',
 })
 export class GameState {
-
   state: 'initial' | 'playing' | 'completed' = 'initial';
 
-  type: 'icons' | 'numbers' = 'icons';
+  type: 'icons' | 'numbers' = 'numbers';
   players: 1 | 2 | 3 | 4 = 1;
-  size: 4 | 6 = 6;
+  size: 4 | 6 = 4;
 
   game: Token[] = [];
 

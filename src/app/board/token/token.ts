@@ -11,15 +11,18 @@ import { GameLogic } from '../../game-logic.service';
   styleUrl: './token.css',
 })
 export class Token {
-  token = input.required<string>();
-  index = input.required<string>();
   private gameState = inject(GameState);
   private gameLogic = inject(GameLogic);
+  token = input.required<string>();
+  index = input.required<string>();
   tokenType = this.gameState.type;
-
 
   get tokenState() {
     return this.gameState.game[Number(this.index())].tokenState;
+  }
+
+  get delay() {
+    return `--delay: ${Number(this.index()) * 15}ms`;
   }
 
   handleClick() {
