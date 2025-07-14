@@ -12,19 +12,34 @@
   }
 }
 
+@keyframes button-position {
+  from {
+    transform: translateY(-75%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
 button,
 .material-icons {
   --size-hack: var(--space-xl);
 
-  scale: 0;
   display: block;
   inline-size: var(--size-hack);
   block-size: var(--size-hack);
   font-size: var(--size-hack);
   color: var(--clr-neutral-100);
   opacity: 0;
-  animation: button-opacity 400ms var(--delay) forwards
-    cubic-bezier(0.68,-0.55,0.27,1.55);
+  transition: translate 4000ms;
+  animation:
+    button-opacity 400ms var(--delay) forwards cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    button-position 800ms var(--delay) forwards cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+button:hover {
+  transform: translateY(-2px) !important;
 }
 
 button:has(span) {

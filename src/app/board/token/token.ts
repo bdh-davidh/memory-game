@@ -22,7 +22,7 @@ export class Token {
   }
 
   get delay() {
-    return `--delay: ${Number(this.index()) * 15}ms`;
+    return `--delay: ${Number(this.index()) * 100}ms`;
   }
 
   handleClick() {

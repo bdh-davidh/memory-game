@@ -9,7 +9,7 @@ export class GameState {
 
   type: 'icons' | 'numbers' = 'numbers';
   players: 1 | 2 | 3 | 4 = 1;
-  size: 4 | 6 = 4;
+  size: 4 | 6 = 6;
 
   game: Token[] = [];
 
