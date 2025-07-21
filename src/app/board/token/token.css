@@ -22,6 +22,16 @@
   }
 }
 
+@keyframes bounce {
+  from {
+    transform: translateY(-5px);
+  }
+
+  to {
+    transform: translateY(5px);
+  }
+}
+
 button,
 .material-icons {
   --size-hack: var(--space-xl);
@@ -34,8 +44,8 @@ button,
   opacity: 0;
   transition: translate 200ms;
   animation:
-    button-opacity 200ms var(--delay) forwards cubic-bezier(0.68, -0.55, 0.27, 1.55),
-    button-position 400ms var(--delay) forwards cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    button-opacity 350ms var(--delay) forwards cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    button-position 350ms var(--delay) forwards cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 button:has(span) {
@@ -45,8 +55,10 @@ button:has(span) {
   font-weight: bolder;
 }
 
+/* NOTE Why can't I add bounce? */
 button:hover {
   transform: translateY(-2px) !important;
+  /* animation: bounce 700ms ease-in-out infinite alternate; */
 }
 
 .paired {

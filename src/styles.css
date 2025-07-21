@@ -87,6 +87,7 @@ input,
 button,
 textarea,
 select {
+  cursor: pointer;
   user-select: none;
   font: inherit;
   overflow-wrap: break-word;
@@ -256,5 +257,5 @@ button {
 }
 
 .flow > * + * {
-  margin-block-start: var(--flow, var(--space-m));
+  margin-block-start: var(--flow, var(--space-m, 2rem));
 }

@@ -3,5 +3,6 @@
 }
 
 @if (gameState.state === "playing") {
-  <app-board />
+  <app-header (restartGame)="restartGame()"/>
+  <app-board [renderBoardEvent]="renderBoard" (boardRendered)="onBoardRendered()"/>
 }

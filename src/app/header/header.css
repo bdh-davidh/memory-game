@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 4rem;
+
+  div {
+    display: flex;
+    gap: 1rem
+  }
+
+  button {
+    inline-size: 8rem;
+    padding-block: 0.5rem;
+    padding-inline: 0.75rem;
+    border-radius: 1rem;
+    color: var(--fg, var(--clr-neutral-400));
+    text-align: center;
+    background-color: var(--bg, var(--clr-primary-100));
+    font-weight: bolder;
+    cursor: pointer;
+    transition: all 300ms;
+
+    &:hover {
+      color: var(--clr-neutral-100);
+      background-color: var(--clr-primary-200);
+    }
+
+    &[data-variant="accent"] {
+      --fg: var(--clr-neutral-100);
+      --bg: var(--clr-accent-100);
+    }
+}

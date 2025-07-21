@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, output, OnInit, input } from '@angular/core';
 import { Token } from './token/token';
 import { GameTokens } from '../game-tokens.service';
 import { GameState } from '../game-state.service';
@@ -12,8 +12,19 @@ import { GameState } from '../game-state.service';
 export class Board implements OnInit {
   private gameTokens = inject(GameTokens);
   private gameState = inject(GameState);
+  renderBoardEvent = input<boolean>();
+  boardRendered = output<void>();
   arrayToRender = this.gameTokens[this.gameState.type];
   gridSize = this.gameState.size;
+
+  constructor() {
+    effect(() => {
+      if (this.renderBoardEvent()) {
+        this.renderBoard();
+        this.boardRendered.emit();
+      }
+    });
+  }
 
   renderBoard() {
     const gameSize = this.gameState.size * (this.gridSize / 2);
