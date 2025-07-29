@@ -13,6 +13,15 @@ export class GameState {
 
   game: Token[] = [];
 
+  currentPlayer: 1 | 2 | 3 | 4 = 1;
+
+  pairsFound = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+  };
+
   turn = {
     firstGuess: '',
     secondGuess: '',

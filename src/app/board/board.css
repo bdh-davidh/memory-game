@@ -3,4 +3,7 @@
   display: grid;
   grid-template-columns: repeat(var(--game-size, 6), 1fr);
   gap: var(--space-xs);
+  place-items: center;
+  aspect-ratio: 1;
+  padding: var(--space-xl);
 }

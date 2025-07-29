@@ -3,6 +3,14 @@
 }
 
 @if (gameState.state === "playing") {
-  <app-header (restartGame)="restartGame()"/>
-  <app-board [renderBoardEvent]="renderBoard" (boardRendered)="onBoardRendered()"/>
+  <header>
+    <app-header (newBoard)="reRenderBoard()" />
+  </header>
+  <main>
+    <app-board (boardRendered)="resetNewBoard()" [newBoard]="newBoard" />
+  </main>
+
+  <footer>
+    <app-scores />
+  </footer>
 }

@@ -11,6 +11,17 @@ export class GameLogic {
     this.gameState.game[Number(index)].tokenState = status;
   }
 
+  updateMatchesFound() {
+    this.gameState.pairsFound[this.gameState.currentPlayer] += 1;
+  }
+
+  updateCurrentPlayer() {
+    this.gameState.currentPlayer += 1;
+    if (this.gameState.currentPlayer > this.gameState.players) {
+      this.gameState.currentPlayer = 1;
+    }
+  }
+
   updateBoardState() {
     const firstIndex = Number(this.gameState.turn.firstGuess);
     const secondIndex = Number(this.gameState.turn.secondGuess);
@@ -31,7 +42,10 @@ export class GameLogic {
         // If it's a match set the state
         this.tokenStatus(firstIndex, 'paired');
         this.tokenStatus(secondIndex, 'paired');
+        // Increase the player's score
+        this.updateMatchesFound();
       } else {
+        // Stop additional clicks
         document.body.setAttribute('inert', '');
         // No match, so reset the state after a moment memorise the icons
         setTimeout(() => {
@@ -40,9 +54,11 @@ export class GameLogic {
           document.body.removeAttribute('inert');
         }, 1000);
       }
-      // Clear the turn after the second turn
+      // Clear the attempts after the second turn
       this.gameState.turn.firstGuess = '';
       this.gameState.turn.secondGuess = '';
+      // Move to the next player
+      this.updateCurrentPlayer();
     }
   }
 }

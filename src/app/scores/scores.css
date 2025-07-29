@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  justify-content: space-around;
+  gap: var(--space-s);
+}
+
+div {
+  display: flex;
+  flex: 0 0 10rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-2xs);
+  padding-inline: var(--space-s);
+  border-radius: var(--space-3xs);
+  background-color: var(--clr-primary-100);
+
+  p {
+    font-weight: bold;
+  }
+
+  p:first-of-type {
+    font-size: var(--step--1);
+  }
+}
+
+.current-player {
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-accent-100);
+}

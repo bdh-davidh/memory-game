@@ -9,13 +9,25 @@ import { GameState } from '../game-state.service';
 })
 export class Header {
   gameState = inject(GameState);
-  restartGame = output<void>();
+  newBoard = output<void>();
 
-  restartCurrentGame() {
-    this.restartGame.emit();
+  reRenderBoard() {
+    this.newBoard.emit();
+    this.gameState.pairsFound = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+    };
   }
 
   resetGame() {
     this.gameState.state = 'initial';
+    this.gameState.pairsFound = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+    };
   }
 }

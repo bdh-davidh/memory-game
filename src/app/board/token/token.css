@@ -44,8 +44,8 @@ button,
   opacity: 0;
   transition: translate 200ms;
   animation:
-    button-opacity 350ms var(--delay) forwards cubic-bezier(0.68, -0.55, 0.27, 1.55),
-    button-position 350ms var(--delay) forwards cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    button-opacity var(--duration) var(--delay) forwards cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    button-position var(--duration) var(--delay) forwards cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 button:has(span) {

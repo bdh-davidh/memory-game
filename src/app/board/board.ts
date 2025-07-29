@@ -12,18 +12,18 @@ import { GameState } from '../game-state.service';
 export class Board implements OnInit {
   private gameTokens = inject(GameTokens);
   private gameState = inject(GameState);
-  renderBoardEvent = input<boolean>();
-  boardRendered = output<void>();
   arrayToRender = this.gameTokens[this.gameState.type];
   gridSize = this.gameState.size;
+  newBoard = input<boolean>();
+  boardRendered = output<void>()
 
   constructor() {
     effect(() => {
-      if (this.renderBoardEvent()) {
+      if (this.newBoard()) {
         this.renderBoard();
-        this.boardRendered.emit();
+        this.boardRendered.emit()
       }
-    });
+    })
   }
 
   renderBoard() {
