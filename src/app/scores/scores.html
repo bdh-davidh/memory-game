@@ -1,13 +1,20 @@
-@for (_ of [].constructor(gameState.players); track $index) {
-  <div [class.current-player]="gameState.currentPlayer === $index + 1">
-    <p>Player {{ $index + 1}}</p>
-    <p>{{ getPairsFound($index) }}</p>
-  </div>
-}
-
 @if (gameState.players === 1) {
+
 <div>
   <p>Time</p>
-  <p>999</p>
+  <p>
+    {{ minutes().toString().padStart(2, "0") }}: {{
+    seconds().toString().padStart(2, "0") }}
+  </p>
 </div>
-}
+<div>
+  <p>Moves</p>
+  <p>{{ getValue('movesTaken', 0) }}</p>
+</div>
+
+} @else { @for (_ of [].constructor(gameState.players); track $index) {
+<div [class.current-player]="gameState.currentPlayer === $index + 1">
+  <p>Player {{ $index + 1}}</p>
+  <p>{{ getValue('pairsFound', $index) }}</p>
+</div>
+} }

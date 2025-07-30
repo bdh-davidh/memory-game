@@ -15,6 +15,10 @@ export class GameLogic {
     this.gameState.pairsFound[this.gameState.currentPlayer] += 1;
   }
 
+  updateMovesTaken() {
+    this.gameState.movesTaken[this.gameState.currentPlayer] += 1;
+  }
+
   updateCurrentPlayer() {
     this.gameState.currentPlayer += 1;
     if (this.gameState.currentPlayer > this.gameState.players) {
@@ -57,6 +61,8 @@ export class GameLogic {
       // Clear the attempts after the second turn
       this.gameState.turn.firstGuess = '';
       this.gameState.turn.secondGuess = '';
+      // Register move taken
+      this.updateMovesTaken();
       // Move to the next player
       this.updateCurrentPlayer();
     }
