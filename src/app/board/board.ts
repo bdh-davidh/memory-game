@@ -1,4 +1,12 @@
-import { Component, effect, inject, output, OnInit, input } from '@angular/core';
+import {
+  Component,
+  effect,
+  inject,
+  output,
+  OnInit,
+  input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Token } from './token/token';
 import { GameTokens } from '../game-tokens.service';
 import { GameState } from '../game-state.service';
@@ -15,15 +23,15 @@ export class Board implements OnInit {
   arrayToRender = this.gameTokens[this.gameState.type];
   gridSize = this.gameState.size;
   newBoard = input<boolean>();
-  boardRendered = output<void>()
+  boardRendered = output<void>();
 
   constructor() {
     effect(() => {
       if (this.newBoard()) {
         this.renderBoard();
-        this.boardRendered.emit()
+        this.boardRendered.emit();
       }
-    })
+    });
   }
 
   renderBoard() {

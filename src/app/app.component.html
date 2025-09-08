@@ -13,4 +13,8 @@
   <footer>
     <app-scores />
   </footer>
+
+  @if (gameState.isComplete) {
+    <app-completed (newBoard)="reRenderBoard()"/>
+  }
 }

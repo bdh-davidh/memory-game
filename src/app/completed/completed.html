@@ -1,0 +1,34 @@
+@if (gameState.players === 1 ) {
+<h2>You did it!</h2>
+<p>Game over. Here's how you got on...</p>
+<div class="single-wrapper">
+  <div class="wrapper">
+    <p>Time</p>
+    <p>
+      {{ minutes.toString().padStart(2, "0") }}:{{
+      seconds.toString().padStart(2, "0") }}
+    </p>
+  </div>
+  <div class="wrapper">
+    <p>Moves</p>
+    <p>{{ this.gameState.movesTaken[1] }}</p>
+  </div>
+</div>
+} @else {
+<h2>Results XXX</h2>
+<p>Game over. Here's the results...</p>
+<div class="multi-wrappr flow" style="--flow: var(--space-xs)">
+@for (_ of [].constructor(gameState.players); track $index) {
+  <div class="wrapper">
+    <p>Player {{ $index + 1}}</p>
+    <p>
+      {{ getScores($index) }} Pairs
+    </p>
+  </div>
+}
+</div>
+}
+<div class="button-wrapper">
+  <button (click)="reRenderBoard()">Restart</button>
+  <button (click)="resetGame()" data-variant="accent">New Game</button>
+</div>

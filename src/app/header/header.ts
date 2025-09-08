@@ -1,5 +1,6 @@
 import { Component, inject, output } from '@angular/core';
 import { GameState } from '../game-state.service';
+import { GameLogic } from '../game-logic.service';
 
 @Component({
   selector: 'app-header',
@@ -9,25 +10,14 @@ import { GameState } from '../game-state.service';
 })
 export class Header {
   gameState = inject(GameState);
+  gameLogic = inject(GameLogic);
   newBoard = output<void>();
 
   reRenderBoard() {
-    this.newBoard.emit();
-    this.gameState.pairsFound = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-    };
+    this.gameLogic.reRenderBoard(this.newBoard);
   }
 
   resetGame() {
-    this.gameState.state = 'initial';
-    this.gameState.pairsFound = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-    };
+    this.gameLogic.resetGame()
   }
 }

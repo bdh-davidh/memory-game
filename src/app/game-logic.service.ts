@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Output, Signal, inject } from '@angular/core';
 import { GameState } from './game-state.service';
 
 @Injectable({
@@ -6,6 +6,44 @@ import { GameState } from './game-state.service';
 })
 export class GameLogic {
   gameState = inject(GameState);
+
+  reRenderBoard(board: any) {
+    board.emit();
+    this.gameState.totalSeconds.set(0);
+    this.gameState.isComplete = false;
+    this.gameState.totalSeconds.set(0);
+    this.gameState.pairsFound = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+    };
+    this.gameState.movesTaken = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+    };
+  }
+
+  resetGame() {
+    this.gameState.totalSeconds.set(0);
+    this.gameState.state = 'initial';
+    this.gameState.isComplete = false;
+    this.gameState.totalSeconds.set(0);
+    this.gameState.pairsFound = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+    };
+    this.gameState.movesTaken = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+    };
+  }
 
   tokenStatus(index: number, status: 'initial' | 'selected' | 'paired') {
     this.gameState.game[Number(index)].tokenState = status;
@@ -24,6 +62,10 @@ export class GameLogic {
     if (this.gameState.currentPlayer > this.gameState.players) {
       this.gameState.currentPlayer = 1;
     }
+  }
+
+  checkGameCompleted() {
+    return this.gameState.game.every((token) => token.tokenState === 'paired');
   }
 
   updateBoardState() {
@@ -48,6 +90,11 @@ export class GameLogic {
         this.tokenStatus(secondIndex, 'paired');
         // Increase the player's score
         this.updateMatchesFound();
+        // Check if the game is over
+        if (this.checkGameCompleted()) {
+          this.gameState.isComplete = true;
+          this.gameState.stopTimer();
+        }
       } else {
         // Stop additional clicks
         document.body.setAttribute('inert', '');
@@ -56,6 +103,7 @@ export class GameLogic {
           this.tokenStatus(firstIndex, 'initial');
           this.tokenStatus(secondIndex, 'initial');
           document.body.removeAttribute('inert');
+          console.log('CLEARS');
         }, 1000);
       }
       // Clear the attempts after the second turn

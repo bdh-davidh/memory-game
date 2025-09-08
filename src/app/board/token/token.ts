@@ -3,7 +3,6 @@ import { MatIcon } from '@angular/material/icon';
 import { GameState } from '../../game-state.service';
 import { GameLogic } from '../../game-logic.service';
 
-
 @Component({
   selector: 'app-token',
   imports: [MatIcon],
@@ -33,13 +32,17 @@ export class Token {
     return `--delay: ${this.randomNumber(200, 800)}ms`;
   }
 
-
   handleClick() {
-    // Handle the first guess
+    // Check if first or second guess
     if (!this.gameState.turn.firstGuess) {
+      // Start the timer if single player's first turn
+      if (this.gameState.players === 1 && this.gameState.movesTaken[1] === 0) {
+        this.gameState.startTimer();
+      }
+      // Handle the first guess
       this.gameState.turn.firstGuess = this.index();
     } else {
-    // Handle the second guess
+      // Handle the second guess
       this.gameState.turn.secondGuess = this.index();
     }
     this.gameLogic.updateBoardState();
