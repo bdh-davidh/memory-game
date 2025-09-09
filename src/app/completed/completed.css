@@ -1,14 +1,14 @@
 :host {
   position: absolute;
   inset-block: 50%;
-  transform: translate(25%, -75%);
+  transform: translate(0, -75%);
   block-size: fit-content;
   margin-inline: var(--space-m);
   padding: var(--space-m);
   border-radius: 1rem;
+  text-align: center;
   background-color: white;
   box-shadow: 0 0 0 2000px hsl(250deg 30% 17% / 50%);
-  text-align: center;
 }
 
 :host > * + * {

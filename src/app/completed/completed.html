@@ -15,14 +15,14 @@
   </div>
 </div>
 } @else {
-<h2>Results XXX</h2>
+<h2>{{ gameWinner() }}</h2>
 <p>Game over. Here's the results...</p>
 <div class="multi-wrappr flow" style="--flow: var(--space-xs)">
-@for (_ of [].constructor(gameState.players); track $index) {
+@for (player of rankedScores; track $index) {
   <div class="wrapper">
-    <p>Player {{ $index + 1}}</p>
+    <p>Player {{ player[0] }}</p>
     <p>
-      {{ getScores($index) }} Pairs
+      {{ player[1] }} Pairs
     </p>
   </div>
 }

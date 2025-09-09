@@ -16,10 +16,19 @@ export class Completed {
   seconds = this.gameState.totalSeconds() % 60;
   minutes = Math.floor(this.gameState.totalSeconds() / 60);
 
-  getScores(index: number) {
-    return this.gameState.pairsFound[
-      (index + 1) as keyof typeof this.gameState.pairsFound
-    ];
+  get rankedScores() {
+   return Object.entries(this.gameState.pairsFound)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, this.gameState.players);
+  }
+
+  gameWinner() {
+    const scores = this.rankedScores;
+    if (scores[0][1] !== scores[1][1]) {
+      return `Player ${scores[0][0]} wins!`;
+    } else {
+      return `It's a tie!`
+    }
   }
 
   reRenderBoard() {
